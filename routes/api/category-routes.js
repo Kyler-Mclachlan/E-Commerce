@@ -67,7 +67,7 @@ router.put('/:id', (req, res) => {
     // update a category by its `id` value
   Category.update( 
     {
-      title: req.body.title
+      category_name: req.body.category_name
     },
     {
       where: {
@@ -77,7 +77,7 @@ router.put('/:id', (req, res) => {
   )
     .then(dbUserData => {
       if (!dbUserData[0]) {
-        res.status(404).json({ message: 'No Cataegory found with this id' });
+        res.status(404).json({ message: 'No category_name found with this id' });
         return;
       }
       res.json(dbUserData);
