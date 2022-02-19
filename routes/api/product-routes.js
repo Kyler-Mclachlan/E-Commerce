@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
       'product_name',
       'price',
       'stock',
-      'catagory_id'
+      'category_id'
     ],
     include: [
       {
@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
       'product_name',
       'price',
       'stock',
-      'catagory_id'
+      'category_id'
     ],
     where: {
       id: req.params.id
