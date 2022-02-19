@@ -4,7 +4,11 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  Category.findOne({
+  Category.findAll({
+    attributes: [
+      'id',
+      'category_name',
+    ],
     include: [
       {
         model: Product,
@@ -21,6 +25,10 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   Category.findOne({
+    attributes: [
+      'id',
+      'category_name',
+    ],
     where: {
       id: req.params.id
     },
@@ -57,12 +65,16 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     // update a category by its `id` value
-  Category.update(req.body, {
-    individualHooks: true,
-    where: {
-      id: req.params.id
+  Category.update( 
+    {
+      title: req.body.title
+    },
+    {
+      where: {
+        id: req.params.id
+      }
     }
-  })
+  )
     .then(dbUserData => {
       if (!dbUserData[0]) {
         res.status(404).json({ message: 'No Cataegory found with this id' });
